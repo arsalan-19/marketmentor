@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MarketMentor - PM Interactive Prototype</title>
+  <!-- Tailwind CSS for modern responsive styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome for standard vector icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f5f7ff',
+              100: '#ebf0ff',
+              500: '#4f46e5', // Brand Primary Indigo
+              600: '#4338ca',
+              700: '#3730a3',
+              dark: '#0f172a',    // Brand Dark Navy
+              success: '#10b981', // Capital Protection Emerald
+              danger: '#ef4444',  // Risk Alert Rose
+              slate: '#f8fafc'    // Slate Background
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Styling scrollbars for premium look */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #c7d2fe;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #4f46e5;
+    }
+  </style>
+</head>
+<body class="bg-brand-slate text-slate-800 font-sans min-h-screen flex flex-col antialiased">
+
+  <!-- TOP PROFESSIONAL DISCLAIMER HEADER -->
+  <div class="bg-brand-dark text-white py-2.5 px-4 text-xs font-semibold flex flex-wrap justify-between items-center gap-2 shadow-inner border-b border-indigo-950">
+    <div class="flex items-center gap-2">
+      <span class="bg-brand-500 text-white text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider">PM Portfolio Demo</span>
+      <span>Engineered to showcase product strategy, strict risk safeguards, and responsive front-end logic.</span>
+    </div>
+    <div class="flex items-center gap-4">
+      <span class="opacity-90"><i class="fa-solid fa-lock text-brand-success mr-1"></i> Strictly Delivery-Only ($T+1$)</span>
+      <span class="opacity-90"><i class="fa-solid fa-ban text-brand-danger mr-1"></i> No Intraday | No F&amp;O</span>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="bg-gradient-to-tr from-brand-600 to-indigo-500 text-white p-2.5 rounded-xl shadow-md shadow-indigo-100">
+          <i class="fa-solid fa-chart-line text-xl"></i>
+        </div>
+        <div>
+          <h1 class="font-bold text-lg leading-tight text-brand-dark tracking-tight">MarketMentor</h1>
+          <p class="text-[10px] text-slate-500 font-medium tracking-wide uppercase">AI-Powered NSE Swing Assistant</p>
+        </div>
+      </div>
+      
+      <!-- Live Status Banner -->
+      <div class="flex items-center gap-4 md:gap-6">
+        <div class="hidden md:flex items-center gap-2 bg-slate-100 py-1.5 px-3 rounded-lg border border-slate-200">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <span class="text-xs font-semibold text-slate-600">NSE Live Analytics Feed</span>
+        </div>
+        
+        <!-- Live Simulated Cash Balance -->
+        <div class="bg-indigo-50 border border-indigo-100 rounded-xl px-4 py-1.5 text-right flex flex-col justify-center">
+          <span class="text-[10px] text-indigo-500 uppercase font-bold tracking-wider">Virtual Cash Balance</span>
+          <span id="header-cash" class="font-extrabold text-sm text-brand-600">₹10,00,000.00</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN LAYOUT WRAPPER -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-8">
+    
+    <!-- PRODUCT THESIS / VALUE PROP BANNER -->
+    <section class="bg-gradient-to-r from-brand-dark via-indigo-950 to-slate-950 text-white rounded-3xl p-6 md:p-8 shadow-xl relative overflow-hidden">
+      <div class="absolute -right-16 -top-16 w-64 h-64 bg-brand-500/10 rounded-full blur-3xl"></div>
+      <div class="absolute -left-16 -bottom-16 w-64 h-64 bg-brand-success/10 rounded-full blur-3xl"></div>
+      
+      <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div class="max-w-2xl">
+          <div class="inline-flex items-center gap-1.5 bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 text-xs font-semibold px-3 py-1 rounded-full mb-4">
+            <i class="fa-solid fa-graduation-cap"></i> Dynamic Decision-Support Sandbox
+          </div>
+          <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">Protecting Retail Capital Through Technical Discipline</h2>
+          <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+            MarketMentor is built strictly for **Interday Swing/Positional Investing**. The platform enforces risk-management standards by restricting speculative intraday scalping and option trading. Every recommendation is accompanied by an explainable "Why This Stock" narrative to demystify complex corporate reports.
+          </p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3 shrink-0">
+          <a href="#dashboard-section" onclick="switchTab('dashboard')" class="bg-brand-500 hover:bg-brand-600 text-white text-xs font-bold py-3.5 px-6 rounded-xl transition shadow-md shadow-brand-500/20 text-center">
+            View Daily Scans
+          </a>
+          <a href="#dashboard-section" onclick="switchTab('portfolio')" class="bg-white/10 hover:bg-white/15 text-white text-xs font-bold py-3.5 px-6 rounded-xl border border-white/20 transition text-center">
+            My Virtual Ledger
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB SWITCHER NAV -->
+    <div class="border-b border-slate-200 flex gap-6" id="dashboard-section">
+      <button onclick="switchTab('dashboard')" id="tab-dashboard" class="border-b-2 border-brand-500 text-brand-600 py-3 font-bold text-sm flex items-center gap-2 transition focus:outline-none">
+        <i class="fa-solid fa-shapes"></i> Daily Smart Dashboard
+      </button>
+      <button onclick="switchTab('portfolio')" id="tab-portfolio" class="border-b-2 border-transparent text-slate-500 hover:text-slate-800 py-3 font-bold text-sm flex items-center gap-2 transition focus:outline-none">
+        <i class="fa-solid fa-wallet"></i> My Virtual Ledger &amp; Analytics
+      </button>
+    </div>
+
+    <!-- VIEW 1: DAILY SMART DASHBOARD -->
+    <div id="view-dashboard" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      
+      <!-- STOCKS LISTING (LEFT/MIDDLE) -->
+      <div class="lg:col-span-2 flex flex-col gap-6">
+        <div class="flex justify-between items-center">
+          <div>
+            <h3 class="text-lg font-bold text-brand-dark flex items-center gap-2">
+              <i class="fa-solid fa-fire text-amber-500"></i> High-Conviction Suggestions Today
+            </h3>
+            <p class="text-xs text-slate-500">Pre-computed pre-market @ 08:30 IST &bull; Live Technicals Merged</p>
+          </div>
+          <span class="text-xs bg-slate-200/60 font-semibold px-2.5 py-1 rounded-md text-slate-600">Live Status: ●</span>
+        </div>
+
+        <!-- STOCKS CONTAINER -->
+        <div id="stocks-container" class="flex flex-col gap-4">
+          <!-- Dynamically populated via JS -->
+        </div>
+      </div>
+
+      <!-- STOCK DETAILED SIDEBAR (RIGHT) -->
+      <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm sticky top-24 self-start h-[calc(100vh-12rem)] overflow-y-auto flex flex-col justify-between" id="detail-sidebar">
+        <div id="sidebar-loading" class="text-center py-12 my-auto">
+          <i class="fa-solid fa-magnifying-glass-chart text-slate-300 text-5xl mb-4 animate-pulse"></i>
+          <p class="text-sm font-bold text-slate-500">Select a Recommendation</p>
+          <p class="text-xs text-slate-400 max-w-xs mx-auto mt-2 leading-relaxed">
+            Select a high-conviction card on the left to review its multi-factor analysis, plain-language "Why" synthesis, and test with simulated trades.
+          </p>
+        </div>
+
+        <div id="sidebar-content" class="hidden flex-col gap-5 h-full justify-between">
+          <!-- Content dynamically loaded via JS -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- VIEW 2: VIRTUAL PORTFOLIO & LEDGER -->
+    <div id="view-portfolio" class="hidden flex flex-col gap-8">
+      
+      <!-- PORTFOLIO KPI STATS GRID -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+          <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Total Portfolio Value</p>
+          <p id="port-total-val" class="text-2xl font-black text-brand-dark mt-1">₹10,00,000.00</p>
+          <span class="text-[10px] bg-indigo-50 text-indigo-600 px-2 py-0.5 rounded-full font-bold mt-1.5 inline-block">Initial Capital: ₹10L</span>
+        </div>
+        
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+          <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Simulated P&amp;L</p>
+          <p id="port-pnl" class="text-2xl font-black text-brand-success mt-1">₹0.00</p>
+          <span id="port-pnl-perc" class="text-[10px] font-bold text-brand-success mt-1 inline-block">0.00%</span>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+          <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Model Win Rate</p>
+          <p id="port-winrate" class="text-2xl font-black text-brand-500 mt-1">0%</p>
+          <span class="text-[10px] text-slate-400 mt-1 inline-block">Target Goal: &gt;75% Acc.</span>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+          <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Portfolio Max Drawdown</p>
+          <p id="port-drawdown" class="text-2xl font-black text-slate-800 mt-1">0.00%</p>
+          <span class="text-[10px] text-brand-success font-bold bg-emerald-50 px-2 py-0.5 rounded-full mt-1.5 inline-block"><i class="fa-solid fa-shield-halved"></i> Optimal Preservation</span>
+        </div>
+      </div>
+
+      <!-- ACTIVE HOLDINGS & ORDER HISTORY -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- HOLDINGS TABLE (LEFT 2/3) -->
+        <div class="lg:col-span-2 bg-white border border-slate-200 rounded-3xl p-6 shadow-sm">
+          <div class="flex justify-between items-center mb-6">
+            <div>
+              <h4 class="font-bold text-brand-dark text-base">Active Positions Ledger</h4>
+              <p class="text-xs text-slate-500">Every simulated position is locked under overnight ($T+1$) delivery bounds.</p>
+            </div>
+            <span class="text-xs text-brand-600 font-bold bg-brand-50 px-3 py-1 rounded-full">Cash Balance: <span id="portfolio-cash">₹10,00,000.00</span></span>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm">
+              <thead>
+                <tr class="border-b border-slate-100 text-slate-400 font-bold text-xs uppercase tracking-wider">
+                  <th class="pb-3">Ticker</th>
+                  <th class="pb-3 text-right">Avg Purchase Price</th>
+                  <th class="pb-3 text-right">Live Price</th>
+                  <th class="pb-3 text-right">Qty</th>
+                  <th class="pb-3 text-right">Total Invested</th>
+                  <th class="pb-3 text-right">Live P&amp;L</th>
+                  <th class="pb-3 text-center">Liquidation</th>
+                </tr>
+              </thead>
+              <tbody id="holdings-table-body">
+                <!-- Dynamic injected rows -->
+              </tbody>
+            </table>
+            <div id="holdings-empty-state" class="text-center py-12">
+              <i class="fa-solid fa-folder-open text-slate-200 text-5xl mb-3"></i>
+              <p class="text-sm font-semibold text-slate-400">No active swing holdings</p>
+              <p class="text-xs text-slate-400 mt-1">Review the Daily Dashboard suggestions and complete a simulated buy to begin tracking performance.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- TRANSACTION LOGGER (RIGHT 1/3) -->
+        <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col justify-between">
+          <div>
+            <h4 class="font-bold text-brand-dark text-base mb-1">Execution Audit Trail</h4>
+            <p class="text-xs text-slate-500 mb-4">Historical record of all transaction activities.</p>
+            <div id="activity-log-container" class="flex flex-col gap-3 max-h-[350px] overflow-y-auto pr-1">
+              <!-- Log records appear here -->
+              <div class="text-center text-xs text-slate-400 py-12">
+                No transactions completed in this session.
+              </div>
+            </div>
+          </div>
+          
+          <div class="mt-6 pt-6 border-t border-slate-100 bg-brand-slate p-4 rounded-2xl text-xs text-slate-500 flex flex-col gap-2">
+            <span class="font-bold text-slate-700 uppercase tracking-wide text-[10px]"><i class="fa-solid fa-circle-info text-brand-500"></i> PM Compliance Validation</span>
+            <span>All execution pricing tracks local daily parameters, allowing recruiters to empirically verify model performance and transparency.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- MODAL: DYNAMIC JARGON BUSTER TOOLTIP -->
+  <div id="jargon-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-brand-dark/60 backdrop-blur-sm hidden px-4">
+    <div class="bg-white border border-slate-200 rounded-3xl p-6 max-w-md w-full shadow-2xl relative">
+      <button onclick="closeJargonModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+      <div class="flex items-center gap-3 mb-4">
+        <div class="bg-brand-50 text-brand-600 p-2.5 rounded-xl">
+          <i class="fa-solid fa-circle-question text-lg"></i>
+        </div>
+        <div>
+          <h5 id="modal-term-title" class="font-bold text-brand-dark text-base">Analytical Dictionary</h5>
+          <p class="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">MarketMentor Jargon Buster</p>
+        </div>
+      </div>
+      <p id="modal-term-desc" class="text-slate-600 text-sm leading-relaxed mb-6">
+        Term explanation loaded dynamically.
+      </p>
+      <div class="bg-brand-slate p-3 rounded-xl border border-slate-100 text-xs text-slate-500">
+        <strong>PM Philosophy:</strong> By putting analytical descriptions directly in context, we reduce friction and cognitive load for Siddharth, letting him build systemic trust organically.
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST ALERTS: STRICT T+1 INTRADAY BLOCKED MESSAGE -->
+  <div id="intraday-toast" class="fixed bottom-6 right-6 z-50 max-w-sm w-full bg-white border border-rose-100 shadow-2xl rounded-2xl p-4 hidden border-l-4 border-l-brand-danger animate-bounce">
+    <div class="flex items-start gap-3">
+      <div class="bg-rose-50 text-brand-danger p-2 rounded-lg shrink-0">
+        <i class="fa-solid fa-hand text-lg"></i>
+      </div>
+      <div class="flex-grow">
+        <h6 class="font-bold text-rose-900 text-sm">Action Restricted: Same-Day Intraday Liquidation</h6>
+        <p class="text-xs text-slate-600 mt-1 font-medium">
+          <strong>Intraday trading is disabled!</strong> To cultivate capital-protection habits, MarketMentor enforces delivery rules ($T+1$ holding). Simulated purchases must settle overnight and are unlocked for liquidation in tomorrow's market session.
+        </p>
+        <button onclick="closeToast()" class="text-[10px] font-bold text-brand-danger uppercase tracking-wider mt-2.5 hover:underline block">Understood</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- APP FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-8 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2 text-slate-500 text-sm">
+        <span class="font-bold text-brand-dark">MarketMentor Portfolio Sandbox</span> &copy; 2026. Designed for PM evaluations.
+      </div>
+      <div class="flex gap-4 text-xs text-slate-400">
+        <span>*MarketMentor suggestions are based on historical probability matrices. Sandbox operations carry no real-world monetary value or risk.*</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CLIENT-SIDE RE-ENTRY & TRADING ENGINE -->
+  <script>
+    const state = {
+      virtualCash: 1000000.00,
+      portfolioValue: 1000000.00,
+      holdings: [],
+      tradesLog: [],
+      selectedStock: null,
+      dictionary: {
+        "P/E Ratio": "Price-to-Earnings Ratio measures market premium compared to earnings. MarketMentor filters out companies with overvalued P/E multiples relative to sector averages to prevent cash traps.",
+        "D/E Ratio": "Debt-to-Equity Ratio evaluates financial leverage. Our fundamental filter rejects highly geared debt structures (D/E > 1.20) to ensure high structural protection.",
+        "ROCE": "Return on Capital Employed tracks core efficiency of both debt and equity. We prioritize companies with ROCE > 15% to certify efficient operational capital deployment.",
+        "RSI": "Relative Strength Index evaluates technical momentum on a 0-100 scale. We look for pullbacks between 40-50 in a stable uptrend, indicating robust swing entries while avoiding overbought zones (>70).",
+        "Bullish Engulfing": "A highly high-probability 2-candle trend-reversal pattern. A large green candle completely overlaps the body of the preceding red candle, indicating powerful institutional support.",
+        "Morning Star": "The gold standard of swing reversals. A three-candle consolidation setup showing immediate price rejection and strong positive breakout trajectory.",
+        "Doji Pattern": "Denotes complete market equilibrium and localized consolidation. When detected near historical moving average support, it flags pending swing breakouts."
+      },
+      stocks: [
+        {
+          ticker: "TATAMOTORS",
+          name: "Tata Motors Limited",
+          price: 985.40,
+          change: 1.45,
+          score: 92,
+          category: "STRONG BUY",
+          risk: "Moderate",
+          why: "Recommended today based on high fundamental solvency combined with high-probability daily chart setups.",
+          bullets: [
+            "<strong>Balance Sheet Deleveraging:</strong> Debt-to-Equity ($D/E$) decreased from $1.4$ to a healthy $0.3$ across successive operational quarters, reducing solvency risks.",
+            "<strong>Technical Bounce:</strong> The asset price found dynamic support at the $50\\text{-day EMA}$ dynamic band on strong volume inflow, indicating institutional accumulation.",
+            "<strong>Candlestick Validation:</strong> Formed a confirmed <strong>Bullish Engulfing</strong> pattern on yesterday's close, triggering standard swing parameters."
+          ],
+          metrics: {
+            pe: "18.4",
+            de: "0.30",
+            roce: "21.0%",
+            pattern: "Bullish Engulfing",
+            rsi: "62.0 (Uptrend)"
+          }
+        },
+        {
+          ticker: "RELIANCE",
+          name: "Reliance Industries Limited",
+          price: 2450.15,
+          change: -0.30,
+          score: 85,
+          category: "BUY",
+          risk: "Low",
+          why: "An excellent, conservative defensive swing opportunity supported by structural indicators.",
+          bullets: [
+            "<strong>Valuation Comfort:</strong> Trading close to historical median $P/E$, limiting downside risk.",
+            "<strong>Support Base:</strong> Showing dynamic consolidation support at the $100\\text{-day SMA}$ level.",
+            "<strong>Volume Inflow:</strong> Chaikin Money Flow ($CMF$) sits comfortably at $+0.18$, showing steady institutional backing."
+          ],
+          metrics: {
+            pe: "24.1",
+            de: "0.62",
+            roce: "15.4%",
+            pattern: "Doji Pattern",
+            rsi: "51.0 (Neutral)"
+          }
+        },
+        {
+          ticker: "INFY",
+          name: "Infosys Limited",
+          price: 1540.00,
+          change: 2.10,
+          score: 78,
+          category: "WATCHLIST CANDIDATE",
+          risk: "Low",
+          why: "A long-term profitability giant showing technical indications of structural rotation.",
+          bullets: [
+            "<strong>Efficiency Powerhouse:</strong> Boasts a massive Return on Capital Employed ($ROCE$) of $32.4\\%$.",
+            "<strong>Dynamic Support:</strong> Bounced from the standard $38.2\\%$ Fibonacci retracement level.",
+            "<strong>Technical Outlook:</strong> Candlestick setup indicates initial consolidation before establishing target breakout waves."
+          ],
+          metrics: {
+            pe: "26.8",
+            de: "0.08",
+            roce: "32.4%",
+            pattern: "Morning Star",
+            rsi: "44.0"
+          }
+        },
+        {
+          ticker: "HDFCBANK",
+          name: "HDFC Bank Limited",
+          price: 1610.50,
+          change: -1.15,
+          score: 64,
+          category: "HOLD",
+          risk: "Low",
+          why: "Exceptional core financials, but current technical setup registers dynamic short-term supply pressure.",
+          bullets: [
+            "<strong>Sector Headwinds:</strong> Fundamentally robust but currently experiencing overhead resistance at the $200\\text{-day SMA}$.",
+            "<strong>Momentum Reading:</strong> Daily RSI registers negative trajectory, suggesting a deeper base must form before swing entries trigger."
+          ],
+          metrics: {
+            pe: "19.2",
+            de: "0.85",
+            roce: "18.1%",
+            pattern: "Doji Pattern",
+            rsi: "38.0"
+          }
+        }
+      ]
+    };
+
+    window.addEventListener("DOMContentLoaded", () => {
+      renderDashboard();
+      updateVirtualStats();
+    });
+
+    function renderDashboard() {
+      const container = document.getElementById("stocks-container");
+      container.innerHTML = "";
+
+      state.stocks.forEach(stock => {
+        let recoColor = "text-brand-success";
+        if (stock.category === "WATCHLIST CANDIDATE") recoColor = "text-amber-500";
+        if (stock.category === "HOLD") recoColor = "text-slate-500";
+
+        const changeIcon = stock.change >= 0 ? "fa-caret-up text-brand-success" : "fa-caret-down text-brand-danger";
+        const changeColor = stock.change >= 0 ? "text-brand-success" : "text-brand-danger";
+
+        const card = document.createElement("div");
+        card.className = `bg-white border-2 border-slate-200/60 rounded-2xl p-5 hover:border-brand-500 cursor-pointer transition shadow-sm hover:shadow-md flex flex-col md:flex-row justify-between gap-4 items-start md:items-center ${state.selectedStock?.ticker === stock.ticker ? 'border-brand-500 ring-2 ring-indigo-100' : ''}`;
+        card.onclick = () => selectStock(stock);
+
+        card.innerHTML = `
+          <div class="flex-grow">
+            <div class="flex items-center gap-2">
+              <span class="font-extrabold text-brand-dark text-base tracking-tight">${stock.ticker}</span>
+              <span class="text-xs text-slate-400 font-semibold">• ${stock.name}</span>
+            </div>
+            
+            <div class="flex flex-wrap items-center gap-x-4 gap-y-1.5 mt-3 text-xs text-slate-500 font-medium">
+              <span>Category: <strong class="${recoColor}">${stock.category}</strong></span>
+              <span>CMP: <strong class="text-brand-dark">₹${stock.price.toFixed(2)}</strong></span>
+              <span class="flex items-center gap-1">
+                <i class="fa-solid ${changeIcon}"></i>
+                <span class="${changeColor}">${stock.change >= 0 ? '+' : ''}${stock.change.toFixed(2)}%</span>
+              </span>
+              <span>Risk Profile: <strong class="text-slate-700">${stock.risk}</strong></span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 self-end md:self-center">
+            <div class="text-right flex flex-col items-end">
+              <span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Confidence Score</span>
+              <div class="flex items-center gap-1.5">
+                <div class="w-16 bg-slate-100 rounded-full h-1.5 hidden sm:block overflow-hidden">
+                  <div class="bg-brand-500 h-1.5 rounded-full" style="width: ${stock.score}%"></div>
+                </div>
+                <span class="font-black text-brand-dark text-sm">${stock.score}%</span>
+              </div>
+            </div>
+            <div class="bg-indigo-50 border border-indigo-100 p-2 rounded-xl text-brand-500">
+              <i class="fa-solid fa-chevron-right text-xs"></i>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function selectStock(stock) {
+      state.selectedStock = stock;
+      renderDashboard(); // Re-render list to highlight active border
+
+      document.getElementById("sidebar-loading").classList.add("hidden");
+      const content = document.getElementById("sidebar-content");
+      content.classList.remove("hidden");
+      content.classList.add("flex");
+
+      let categoryBg = "bg-emerald-50 text-brand-success border-emerald-100";
+      if (stock.category === "WATCHLIST CANDIDATE") categoryBg = "bg-amber-50 text-amber-600 border-amber-100";
+      if (stock.category === "HOLD") categoryBg = "bg-slate-100 text-slate-700 border-slate-200";
+
+      content.innerHTML = `
+        <div class="flex flex-col gap-5 flex-grow">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div>
+              <h4 class="font-extrabold text-brand-dark text-lg tracking-tight">${stock.ticker}</h4>
+              <p class="text-[11px] text-slate-400 font-semibold">${stock.name}</p>
+            </div>
+            <span class="border px-3 py-1 text-[10px] font-extrabold rounded-full ${categoryBg}">${stock.category}</span>
+          </div>
+
+          <!-- Why Synthesis Section -->
+          <div class="bg-brand-slate rounded-2xl p-4 border border-slate-200/60">
+            <h5 class="font-bold text-xs text-brand-500 flex items-center gap-1.5 mb-2 uppercase tracking-wider">
+              <i class="fa-solid fa-brain"></i> "Why This Stock" Synthesis
+            </h5>
+            <p class="text-slate-600 text-xs leading-relaxed mb-3">${stock.why}</p>
+            <ul class="flex flex-col gap-2">
+              ${stock.bullets.map(b => `
+                <li class="text-[11px] text-slate-600 leading-normal pl-3 relative before:content-[''] before:absolute before:left-0 before:top-1.5 before:w-1.5 before:h-1.5 before:bg-brand-500 before:rounded-full">
+                  ${b}
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+
+          <!-- Parameter Definitions Trigger -->
+          <div class="flex flex-col gap-3">
+            <h5 class="font-bold text-xs text-brand-dark flex items-center gap-1.5 mb-1 uppercase tracking-wider">
+              <i class="fa-solid fa-calculator"></i> Metric Definitions (Jargon Buster)
+            </h5>
+            <div class="grid grid-cols-2 gap-2.5">
+              <div onclick="openJargonModal('P/E Ratio')" class="border border-slate-150 hover:border-indigo-150 hover:bg-indigo-50/30 cursor-pointer p-2.5 rounded-xl transition">
+                <span class="text-[9px] text-slate-400 font-bold block uppercase tracking-wider">P/E Ratio <i class="fa-regular fa-circle-question text-[8px]"></i></span>
+                <span class="font-extrabold text-slate-800 text-xs">${stock.metrics.pe}</span>
+              </div>
+              <div onclick="openJargonModal('D/E Ratio')" class="border border-slate-150 hover:border-indigo-150 hover:bg-indigo-50/30 cursor-pointer p-2.5 rounded-xl transition">
+                <span class="text-[9px] text-slate-400 font-bold block uppercase tracking-wider">Debt to Equity <i class="fa-regular fa-circle-question text-[8px]"></i></span>
+                <span class="font-extrabold text-slate-800 text-xs">${stock.metrics.de}</span>
+              </div>
+              <div onclick="openJargonModal('ROCE')" class="border border-slate-150 hover:border-indigo-150 hover:bg-indigo-50/30 cursor-pointer p-2.5 rounded-xl transition">
+                <span class="text-[9px] text-slate-400 font-bold block uppercase tracking-wider">ROCE <i class="fa-regular fa-circle-question text-[8px]"></i></span>
+                <span class="font-extrabold text-slate-800 text-xs">${stock.metrics.roce}</span>
+              </div>
+              <div onclick="openJargonModal('RSI')" class="border border-slate-150 hover:border-indigo-150 hover:bg-indigo-50/30 cursor-pointer p-2.5 rounded-xl transition">
+                <span class="text-[9px] text-slate-400 font-bold block uppercase tracking-wider">Relative Strength <i class="fa-regular fa-circle-question text-[8px]"></i></span>
+                <span class="font-extrabold text-slate-800 text-xs">${stock.metrics.rsi}</span>
+              </div>
+            </div>
+            
+            <div onclick="openJargonModal('${stock.metrics.pattern}')" class="border border-slate-150 hover:border-indigo-150 hover:bg-indigo-50/30 cursor-pointer p-2.5 rounded-xl flex items-center justify-between transition mt-1">
+              <div>
+                <span class="text-[9px] text-slate-400 font-bold block uppercase tracking-wider">Detected Daily Candlestick Pattern</span>
+                <span class="font-extrabold text-brand-600 text-xs">${stock.metrics.pattern}</span>
+              </div>
+              <i class="fa-solid fa-chevron-right text-slate-300 text-[10px]"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Simulated Trade Action Box -->
+        <div class="mt-6 pt-5 border-t border-slate-100">
+          <label class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block mb-1.5">Simulate Position Quantity</label>
+          <div class="flex gap-2">
+            <input type="number" id="sim-qty" value="10" min="1" class="w-20 border border-slate-200 rounded-xl px-3 py-2 text-sm font-bold text-slate-800 focus:outline-none focus:border-brand-500">
+            <button onclick="executeSimulatedBuy()" class="flex-grow bg-brand-500 hover:bg-brand-600 text-white text-xs font-extrabold py-2.5 px-4 rounded-xl transition shadow-md shadow-brand-500/15 flex items-center justify-center gap-1.5">
+              <i class="fa-solid fa-circle-play"></i> Simulate Delivery Buy
+            </button>
+          </div>
+          <div class="text-[9px] text-slate-400 text-center mt-2.5 font-medium">
+            *Positions settle overnight; immediate same-day liquidation is prohibited.
+          </div>
+        </div>
+      `;
+    }
+
+    function switchTab(viewName) {
+      const tabDashboard = document.getElementById("tab-dashboard");
+      const tabPortfolio = document.getElementById("tab-portfolio");
+      const viewDashboardDiv = document.getElementById("view-dashboard");
+      const viewPortfolioDiv = document.getElementById("view-portfolio");
+
+      if (viewName === 'dashboard') {
+        tabDashboard.className = "border-b-2 border-brand-500 text-brand-600 py-3 font-bold text-sm flex items-center gap-2 transition focus:outline-none";
+        tabPortfolio.className = "border-b-2 border-transparent text-slate-500 hover:text-slate-800 py-3 font-bold text-sm flex items-center gap-2 transition focus:outline-none";
+        viewDashboardDiv.classList.remove("hidden");
+        viewPortfolioDiv.classList.add("hidden");
+      } else {
+        tabDashboard.className = "border-b-2 border-transparent text-slate-500 hover:text-slate-800 py-3 font-bold text-sm flex items-center gap-2 transition focus:outline-none";
+        tabPortfolio.className = "border-b-2 border-brand-500 text-brand-600 py-3 font-bold text-sm flex items-center gap-2 transition focus:outline-none";
+        viewDashboardDiv.classList.add("hidden");
+        viewPortfolioDiv.classList.remove("hidden");
+        renderHoldings();
+      }
+    }
+
+    function executeSimulatedBuy() {
+      if (!state.selectedStock) return;
+      const qty = parseInt(document.getElementById("sim-qty").value);
+      if (isNaN(qty) || qty <= 0) {
+        return;
+      }
+
+      const totalCost = state.selectedStock.price * qty;
+      if (totalCost > state.virtualCash) {
+        return;
+      }
+
+      state.virtualCash -= totalCost;
+      const buyTimestamp = new Date();
+
+      const holdingIndex = state.holdings.findIndex(h => h.ticker === state.selectedStock.ticker);
+      if (holdingIndex >= 0) {
+        const existing = state.holdings[holdingIndex];
+        const newQty = existing.qty + qty;
+        const newAvg = ((existing.avgPrice * existing.qty) + totalCost) / newQty;
+        existing.qty = newQty;
+        existing.avgPrice = newAvg;
+      } else {
+        state.holdings.push({
+          ticker: state.selectedStock.ticker,
+          name: state.selectedStock.name,
+          qty: qty,
+          avgPrice: state.selectedStock.price,
+          buyDate: buyTimestamp
+        });
+      }
+
+      state.tradesLog.unshift({
+        type: 'BUY',
+        ticker: state.selectedStock.ticker,
+        qty: qty,
+        price: state.selectedStock.price,
+        time: buyTimestamp.toLocaleTimeString()
+      });
+
+      updateVirtualStats();
+    }
+
+    function executeSimulatedSell(ticker) {
+      const holdingIndex = state.holdings.findIndex(h => h.ticker === ticker);
+      if (holdingIndex === -1) return;
+
+      const holding = state.holdings[holdingIndex];
+      const now = new Date();
+
+      // INTRADAY EXCLUSION SAFETY: Block liquidation during the first 15 seconds after purchase (simulates overnight lock)
+      const secondsPassed = (now.getTime() - holding.buyDate.getTime()) / 1000;
+      if (secondsPassed < 15) {
+        showToast();
+        return;
+      }
+
+      const currentStockData = state.stocks.find(s => s.ticker === ticker);
+      const sellPrice = currentStockData ? currentStockData.price : holding.avgPrice;
+      const totalCredit = sellPrice * holding.qty;
+      const initialInvestment = holding.avgPrice * holding.qty;
+      const profitLoss = totalCredit - initialInvestment;
+
+      state.virtualCash += totalCredit;
+
+      state.tradesLog.unshift({
+        type: 'SELL',
+        ticker: ticker,
+        qty: holding.qty,
+        price: sellPrice,
+        pnl: profitLoss,
+        time: now.toLocaleTimeString()
+      });
+
+      state.holdings.splice(holdingIndex, 1);
+      updateVirtualStats();
+      renderHoldings();
+    }
+
+    function updateVirtualStats() {
+      let currentHoldingsValue = 0;
+      
+      state.holdings.forEach(h => {
+        const liveData = state.stocks.find(s => s.ticker === h.ticker);
+        const livePrice = liveData ? liveData.price : h.avgPrice;
+        currentHoldingsValue += (livePrice * h.qty);
+      });
+
+      state.portfolioValue = state.virtualCash + currentHoldingsValue;
+      const netPnl = state.portfolioValue - 1000000.00;
+      const pnlPercentage = (netPnl / 1000000.00) * 100;
+
+      const closedTrades = state.tradesLog.filter(t => t.type === 'SELL');
+      let winRate = 0;
+      if (closedTrades.length > 0) {
+        const wins = closedTrades.filter(t => t.pnl > 0).length;
+        winRate = Math.round((wins / closedTrades.length) * 100);
+      }
+
+      document.getElementById("header-cash").innerText = "₹" + state.virtualCash.toLocaleString('en-IN', {minimumFractionDigits: 2});
+      document.getElementById("portfolio-cash").innerText = "₹" + state.virtualCash.toLocaleString('en-IN', {minimumFractionDigits: 2});
+      document.getElementById("port-total-val").innerText = "₹" + state.portfolioValue.toLocaleString('en-IN', {minimumFractionDigits: 2});
+      
+      const pnlEl = document.getElementById("port-pnl");
+      const pnlPercEl = document.getElementById("port-pnl-perc");
+      
+      pnlEl.innerText = (netPnl >= 0 ? "+" : "") + "₹" + netPnl.toLocaleString('en-IN', {minimumFractionDigits: 2});
+      pnlPercEl.innerText = (netPnl >= 0 ? "+" : "") + pnlPercentage.toFixed(2) + "%";
+      
+      if (netPnl >= 0) {
+        pnlEl.className = "text-2xl font-black text-brand-success mt-1";
+        pnlPercEl.className = "text-[10px] font-bold text-brand-success mt-1 inline-block";
+      } else {
+        pnlEl.className = "text-2xl font-black text-brand-danger mt-1";
+        pnlPercEl.className = "text-[10px] font-bold text-brand-danger mt-1 inline-block";
+      }
+
+      document.getElementById("port-winrate").innerText = winRate + "%";
+      renderLogs();
+    }
+
+    function renderHoldings() {
+      const tbody = document.getElementById("holdings-table-body");
+      const emptyState = document.getElementById("holdings-empty-state");
+      tbody.innerHTML = "";
+
+      if (state.holdings.length === 0) {
+        emptyState.classList.remove("hidden");
+        return;
+      } else {
+        emptyState.classList.add("hidden");
+      }
+
+      state.holdings.forEach(h => {
+        const liveData = state.stocks.find(s => s.ticker === h.ticker);
+        const livePrice = liveData ? liveData.price : h.avgPrice;
+        const totalInvestment = h.avgPrice * h.qty;
+        const currentPnl = (livePrice - h.avgPrice) * h.qty;
+        const pnlPercentage = ((livePrice - h.avgPrice) / h.avgPrice) * 100;
+
+        const row = document.createElement("tr");
+        row.className = "border-b border-slate-100 hover:bg-slate-50/50 transition";
+        row.innerHTML = `
+          <td class="py-4 font-bold text-brand-dark">${h.ticker}</td>
+          <td class="py-4 text-right font-semibold text-slate-600">₹${h.avgPrice.toFixed(2)}</td>
+          <td class="py-4 text-right font-semibold text-slate-800">₹${livePrice.toFixed(2)}</td>
+          <td class="py-4 text-right font-bold text-slate-600">${h.qty}</td>
+          <td class="py-4 text-right font-semibold text-slate-700">₹${totalInvestment.toFixed(2)}</td>
+          <td class="py-4 text-right font-black ${currentPnl >= 0 ? 'text-brand-success' : 'text-brand-danger'}">
+            ${currentPnl >= 0 ? '+' : ''}₹${currentPnl.toFixed(2)} (${pnlPercentage.toFixed(2)}%)
+          </td>
+          <td class="py-4 text-center">
+            <button onclick="executeSimulatedSell('${h.ticker}')" class="bg-rose-50 hover:bg-brand-danger text-brand-danger hover:text-white border border-rose-100 px-3 py-1.5 rounded-xl text-xs font-extrabold transition shadow-sm">
+              Sell
+            </button>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    function renderLogs() {
+      const container = document.getElementById("activity-log-container");
+      container.innerHTML = "";
+
+      if (state.tradesLog.length === 0) {
+        container.innerHTML = `
+          <div class="text-center text-xs text-slate-400 py-12">
+            No transactions completed in this session.
+          </div>
+        `;
+        return;
+      }
+
+      state.tradesLog.forEach(log => {
+        const item = document.createElement("div");
+        item.className = "border border-slate-100 bg-brand-slate p-3 rounded-xl flex justify-between items-center";
+        const typeBadge = log.type === 'BUY' ? 'bg-indigo-50 text-indigo-700' : 'bg-rose-50 text-brand-danger';
+        
+        item.innerHTML = `
+          <div class="flex items-center gap-2">
+            <span class="text-[10px] font-black px-2 py-0.5 rounded-md ${typeBadge}">${log.type}</span>
+            <div>
+              <span class="text-xs font-extrabold text-slate-800">${log.qty} shares of ${log.ticker}</span>
+              <p class="text-[9px] text-slate-400 font-semibold">${log.time}</p>
+            </div>
+          </div>
+          <span class="text-xs font-bold text-slate-700">@ ₹${log.price.toFixed(2)}</span>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    function openJargonModal(term) {
+      const modal = document.getElementById("jargon-modal");
+      const title = document.getElementById("modal-term-title");
+      const desc = document.getElementById("modal-term-desc");
+
+      title.innerText = term;
+      desc.innerText = state.dictionary[term] || "Term explanation details are currently calculated based on latest batch definitions.";
+      modal.classList.remove("hidden");
+    }
+
+    function closeJargonModal() {
+      document.getElementById("jargon-modal").classList.add("hidden");
+    }
+
+    function showToast() {
+      const toast = document.getElementById("intraday-toast");
+      toast.classList.remove("hidden");
+      setTimeout(() => {
+        toast.classList.add("hidden");
+      }, 8000);
+    }
+
+    function closeToast() {
+      document.getElementById("intraday-toast").classList.add("hidden");
+    }
+  </script>
+</body>
+</html>
