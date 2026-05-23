@@ -34,7 +34,7 @@ Capital settlement follows a strict simulated $T+1$ settlement schedule. Positio
 
 The Indian retail investing landscape has seen explosive growth, yet a majority of new retail accounts suffer consistent capital erosion. This is driven by three main factors:
 
-Speculative Over-Leveraging: Over-exposure to high-risk, intraday scalping and highly complex $F\&O$ segments without fundamental or risk management frameworks.
+Speculative Over-Leveraging: Over-exposure to high-risk, intraday scalping and highly complex F&O segments without fundamental or risk management frameworks.
 
 Cognitive Overload & Asymmetric Information: Sifting through quarterly financial statements (Balance Sheets, Profit & Loss Statements, Cash Flows) and correlating them with real-time price action is mathematically and logistically impossible for a casual retail investor.
 
