@@ -121,8 +121,6 @@ System Alpha: Comparing the "Strong Buy" recommendation basket performance again
 
 Designed, managed, and engineered by [Your Name]
 
-💼 LinkedIn: [Your Profile Link]
+💼 LinkedIn: https://www.linkedin.com/in/arsalan-dawalatabad/
 
-📧 Email: [Your Email Address]
-
-🌐 Portfolio Website: [Your Personal
+📧 Email: arsalan.daw@gmail.com
