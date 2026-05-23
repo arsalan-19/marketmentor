@@ -18,9 +18,8 @@ The Reforming Speculator (Secondary): Individual transitioning away from high-ri
 
 2. Phased Launch Roadmap
 
-Phase 1: Alpha (Closed Group)    ──►    Phase 2: Beta (Community Lift)    ──►    Phase 3: Public Release
-  - Target: 100 Power Users               - Target: 1,500 Users                    - Target: Google Play Launch
-  - focus: Core Engine Validation          - focus: UX Friction & Retain Loops      - focus: Scaled ASO & Growth
+<img width="1032" height="132" alt="image" src="https://github.com/user-attachments/assets/bbcec419-a159-4a8b-9979-bb378528e08f" />
+
 
 
 Phase 1: Alpha Testing (Internal Validation)
