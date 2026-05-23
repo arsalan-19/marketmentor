@@ -62,6 +62,7 @@ Prone to "fear of missing out" (FOMO) and emotional trading based on unverified 
 
 Wants to know the concrete why behind a stock pick without spending hours dissecting complex balance sheets.
 
+
 4. System Architecture & Dual-Engine Data Processing Flow
 
 To optimize data pipeline costs while serving hyper-accurate, real-time insights, MarketMentor employs a Hybrid Data Processing Framework.
@@ -71,7 +72,7 @@ To optimize data pipeline costs while serving hyper-accurate, real-time insights
 
 
 
-The Daily Batch Processing Engine (Pre-Computed Fundamentals):
+1. The Daily Batch Processing Engine (Pre-Computed Fundamentals):
 
 Runs once daily at 08:30 IST (pre-market).
 
