@@ -66,26 +66,9 @@ Wants to know the concrete why behind a stock pick without spending hours dissec
 
 To optimize data pipeline costs while serving hyper-accurate, real-time insights, MarketMentor employs a Hybrid Data Processing Framework.
 
-[ NSE / Public Financial API ]
-             │
-             ├──► (Every Morning / 08:30 IST) ──► [Daily Batch Processing Engine]
-             │                                              │
-             │                                    (Pre-calculates Fundamental 
-             │                                     Scores & Filter Whitelist)
-             │                                              │
-             │                                              ▼
-             │                                     [Firebase DB / Cache Store]
-             │                                              │
-             │                                              ▼
-[ User Opens Android Application ] ────────────────► [On-App-Open Dynamic Engine]
-             │                                              │
-             └────────────────► (Fetches Live Price) ───────┼──► Merges Cached Fundamentals
-                                                                with Live Price Action &
-                                                                Runs Real-Time Indicators &
-                                                                Candlestick Scan.
-                                                                │
-                                                                ▼
-                                                       [Daily Smart Dashboard]
+
+<img width="1032" height="482" alt="image" src="https://github.com/user-attachments/assets/e96dfe6c-8965-4ba9-9347-04b239d0c0e1" />
+
 
 
 The Daily Batch Processing Engine (Pre-Computed Fundamentals):
