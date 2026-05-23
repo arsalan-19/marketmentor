@@ -20,7 +20,7 @@ The core ethos of MarketMentor is educational validation: it provides a risk-fre
 
 1.2 The Hard Boundary: Delivery/Interday Only
 
-To protect retail capital and foster disciplined wealth creation, MarketMentor strictly prohibits intraday and Futures & Options ($F\&O$) trading.
+To protect retail capital and foster disciplined wealth creation, MarketMentor strictly prohibits intraday and Futures & Options (F&O) trading.
 
 All recommendations, virtual trades, and tracking metrics are explicitly locked to delivery/interday transactions (positional swing trading with holding periods ranging from 2 days to several weeks/months).
 
