@@ -20,7 +20,7 @@ The core ethos of MarketMentor is educational validation: it provides a risk-fre
 
 1.2 The Hard Boundary: Delivery/Interday Only
 
-To protect retail capital and foster disciplined wealth creation, MarketMentor strictly prohibits intraday and Futures & Options ($F\&O$) trading.
+To protect retail capital and foster disciplined wealth creation, MarketMentor strictly prohibits intraday and Futures & Options (F&O) trading.
 
 All recommendations, virtual trades, and tracking metrics are explicitly locked to delivery/interday transactions (positional swing trading with holding periods ranging from 2 days to several weeks/months).
 
@@ -34,7 +34,7 @@ Capital settlement follows a strict simulated $T+1$ settlement schedule. Positio
 
 The Indian retail investing landscape has seen explosive growth, yet a majority of new retail accounts suffer consistent capital erosion. This is driven by three main factors:
 
-Speculative Over-Leveraging: Over-exposure to high-risk, intraday scalping and highly complex $F\&O$ segments without fundamental or risk management frameworks.
+Speculative Over-Leveraging: Over-exposure to high-risk, intraday scalping and highly complex F&O segments without fundamental or risk management frameworks.
 
 Cognitive Overload & Asymmetric Information: Sifting through quarterly financial statements (Balance Sheets, Profit & Loss Statements, Cash Flows) and correlating them with real-time price action is mathematically and logistically impossible for a casual retail investor.
 
@@ -66,26 +66,8 @@ Wants to know the concrete why behind a stock pick without spending hours dissec
 
 To optimize data pipeline costs while serving hyper-accurate, real-time insights, MarketMentor employs a Hybrid Data Processing Framework.
 
-[ NSE / Public Financial API ]
-             │
-             ├──► (Every Morning / 08:30 IST) ──► [Daily Batch Processing Engine]
-             │                                              │
-             │                                    (Pre-calculates Fundamental 
-             │                                     Scores & Filter Whitelist)
-             │                                              │
-             │                                              ▼
-             │                                     [Firebase DB / Cache Store]
-             │                                              │
-             │                                              ▼
-[ User Opens Android Application ] ────────────────► [On-App-Open Dynamic Engine]
-             │                                              │
-             └────────────────► (Fetches Live Price) ───────┼──► Merges Cached Fundamentals
-                                                                with Live Price Action &
-                                                                Runs Real-Time Indicators &
-                                                                Candlestick Scan.
-                                                                │
-                                                                ▼
-                                                       [Daily Smart Dashboard]
+<img width="1032" height="482" alt="image" src="https://github.com/user-attachments/assets/5b1ac61f-119d-49b5-97e8-d552ab718f14" />
+
 
 
 The Daily Batch Processing Engine (Pre-Computed Fundamentals):
