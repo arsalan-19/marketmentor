@@ -69,41 +69,14 @@ Displays critical risk-performance metrics: Win Rate %, Average Return %, and Pe
 
 Explore the full suite of product development assets created for MarketMentor:
 
-Asset
+Asset	Professional Scope	Location
+Product Requirements Document	Complete functional specs, mathematical formulas, and schema logic.	View PRD
+User Persona & UX Workflows	Target audience profiles, daily journeys, and safety interlock maps.	View User Journeys
+Go-To-Market Plan	Launch roadmap, beta-testing community framework, and North Star KPIs.	View GTM Strategy
+Figma Layout Specs	High-fidelity Android wireframe blueprints and design guidelines.	View Layout Specs
+Interactive Prototype	Fully responsive web dashboard with live simulated trading ledger.	View Source
+<img width="976" height="145" alt="image" src="https://github.com/user-attachments/assets/66902f80-8fe8-458b-ac32-b583ae05dbce" />
 
-Professional Scope
-
-Location
-
-Product Requirements Document
-
-Complete functional specs, mathematical formulas, and schema logic.
-
-View PRD
-
-User Persona & UX Workflows
-
-Target audience profiles, daily journeys, and safety interlock maps.
-
-View User Journeys
-
-Go-To-Market Plan
-
-Launch roadmap, beta-testing community framework, and North Star KPIs.
-
-View GTM Strategy
-
-Figma Layout Specs
-
-High-fidelity Android wireframe blueprints and design guidelines.
-
-View Layout Specs
-
-Interactive Prototype
-
-Fully responsive web dashboard with live simulated trading ledger.
-
-View Source
 
 📊 Success Metrics (KPI Framework)
 
