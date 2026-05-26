@@ -45,7 +45,7 @@ com.marketmentor.app/
 2.1 The Positional Swing Stock Schema
 
 This class models the stock recommendation payload, integrating calculated target prices, estimated horizons, and multi-factor indicator states:
-
+```
 package com.marketmentor.app.domain.model
 
 import java.util.UUID
@@ -78,12 +78,12 @@ data class Metric(
     val explanation: String? = null,
     val code: String? = null          // Linked to Jargon Database for tooltips
 )
-
+```
 
 2.2 The Positional Delivery Holding Schema
 
 Models the active, non-intraday holdings, incorporating strict Same-Day ($T+0$) settlement locks to block speculation:
-
+```
 package com.marketmentor.app.domain.model
 
 import java.util.Date
@@ -99,14 +99,14 @@ data class Holding(
     val purchaseTimestamp: Date = Date(), // System timestamp
     val isSettled: Boolean = false    // Set to TRUE only upon advancing simulated session (T+1)
 )
-
+```
 
 🎨 3. Jetpack Compose UI Components Architecture
 
 3.1 Capital Protection Guardrail Interlock (Kotlin)
 
 This standard Material 3 Dialog composable blocks same-day sales. This replaces standard alert modals to reinforce our strict delivery boundaries:
-
+```
 package com.marketmentor.app.presentation.portfolio.components
 
 import androidx.compose.material3.AlertDialog
@@ -151,7 +151,7 @@ fun IntradayLockDialog(
         }
     )
 }
-
+```
 
 🛠️ 4. Local Execution & Testing Sandbox Strategies
 
