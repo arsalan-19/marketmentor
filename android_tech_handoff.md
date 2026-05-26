@@ -14,7 +14,7 @@ To maintain corporate code hygiene and support seamless dependency injection, th
 2.1 The Positional Swing Stock Schema
 
 This class models the stock recommendation payload, integrating calculated target prices, estimated horizons, and multi-factor indicator states:
-
+'''
 package com.marketmentor.app.domain.model
 
 import java.util.UUID
@@ -47,7 +47,7 @@ data class Metric(
     val explanation: String? = null,
     val code: String? = null          // Linked to Jargon Database for tooltips
 )
-
+'''
 
 2.2 The Positional Delivery Holding Schema
 
