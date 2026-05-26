@@ -5,16 +5,47 @@ This document serves as the architectural handoff blueprint for Android engineer
 📁 1. Target Android Directory Tree
 
 To maintain corporate code hygiene and support seamless dependency injection, the Android application codebase must follow this standard clean architecture package structure:
-
-<img width="955" height="655" alt="image" src="https://github.com/user-attachments/assets/5f4bf5c0-3a60-48b4-adfd-febb3e8eb120" />
-
+```
+com.marketmentor.app/
+│
+├── data/                             # Data Layer (APIs, Caching, Databases)
+│   ├── local/
+│   │   ├── WhitelistDatabase.kt      # Room Database caching the daily pre-filtered fundamentals
+│   │   └── WhitelistDao.kt           # Data Access Object for fast local indexing
+│   ├── remote/
+│   │   ├── NseStreamingApi.kt        # Retrofit interface for streaming/polling latest prices
+│   │   └── ResponseModels.kt         # Data classes modeling incoming stock objects
+│   └── repository/
+│       └── StockRepositoryImpl.kt    # Repository implementing local-first caching strategies
+│
+├── domain/                           # Domain Layer (Pure Business Logic & Use Cases)
+│   ├── model/
+│   │   ├── Stock.kt                  # Clean Kotlin Data Class representing a Recommendation
+│   │   └── Holding.kt                # Data Class representing an active delivery position
+│   └── usecase/
+│       ├── CalculateTechnicalSignals.kt # Algorithmic logic (RSI, EMAs, MACD)
+│       └── ParseCandlestickPattern.kt   # Pattern recognition logic (Engulfing, Hammer, etc.)
+│
+├── presentation/                     # UI/UX Presentation Layer (Jetpack Compose)
+│   ├── dashboard/
+│   │   ├── DashboardScreen.kt        # Main screen containing ranked suggestions
+│   │   └── DashboardViewModel.kt     # ViewModel managing dashboard state machines
+│   ├── portfolio/
+│   │   ├── LedgerScreen.kt           # Virtual ledger tracking delivery and T+1 holds
+│   │   └── LedgerViewModel.kt        # VM managing virtual transactions & cash logs
+│   ├── education/
+│   │   └── JargonBusterScreen.kt     # Educational definition views
+│   └── theme/
+│       ├── Color.kt                  # Material 3 palette tokens (Primary Indigo, Emerald, Slate)
+│       └── Type.kt                   # Typography settings mapped to Plus Jakarta Sans
+```
 
 ☕ 2. Key Kotlin Data Classes & State Schemas
 
 2.1 The Positional Swing Stock Schema
 
 This class models the stock recommendation payload, integrating calculated target prices, estimated horizons, and multi-factor indicator states:
-```
+
 package com.marketmentor.app.domain.model
 
 import java.util.UUID
@@ -47,7 +78,7 @@ data class Metric(
     val explanation: String? = null,
     val code: String? = null          // Linked to Jargon Database for tooltips
 )
-```
+
 
 2.2 The Positional Delivery Holding Schema
 
